@@ -1,0 +1,46 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 320" role="img" aria-label="Aurora orbit artwork">
+  <defs>
+    <radialGradient id="heroBlobA" cx="35%" cy="40%" r="65%">
+      <stop offset="0%" stop-color="#15C39A" stop-opacity="0.35"/>
+      <stop offset="55%" stop-color="#15C39A" stop-opacity="0.08"/>
+      <stop offset="100%" stop-color="#15C39A" stop-opacity="0"/>
+    </radialGradient>
+    <radialGradient id="heroBlobB" cx="70%" cy="60%" r="60%">
+      <stop offset="0%" stop-color="#6366F1" stop-opacity="0.28"/>
+      <stop offset="60%" stop-color="#6366F1" stop-opacity="0.07"/>
+      <stop offset="100%" stop-color="#6366F1" stop-opacity="0"/>
+    </radialGradient>
+    <radialGradient id="heroOrb" cx="50%" cy="50%" r="50%">
+      <stop offset="0%" stop-color="#0B1917" stop-opacity="0.95"/>
+      <stop offset="62%" stop-color="#0F2E27" stop-opacity="0.9"/>
+      <stop offset="100%" stop-color="#0F2E27" stop-opacity="0"/>
+    </radialGradient>
+    <linearGradient id="heroRing" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0%" stop-color="#15C39A" stop-opacity="0.9"/>
+      <stop offset="100%" stop-color="#818CF8" stop-opacity="0.9"/>
+    </linearGradient>
+  </defs>
+  <rect width="800" height="320" fill="url(#heroBlobA)"/>
+  <rect width="800" height="320" fill="url(#heroBlobB)"/>
+  <g fill="#0E8A6D" opacity="0.5">
+    <circle cx="90" cy="70" r="2.5"/>
+    <circle cx="150" cy="230" r="2"/>
+    <circle cx="230" cy="90" r="1.8"/>
+    <circle cx="640" cy="80" r="2.5"/>
+    <circle cx="710" cy="210" r="2"/>
+    <circle cx="580" cy="250" r="1.8"/>
+    <circle cx="60" cy="180" r="1.6"/>
+    <circle cx="745" cy="140" r="1.6"/>
+  </g>
+  <ellipse cx="400" cy="160" rx="250" ry="86" fill="none" stroke="url(#heroRing)" stroke-width="1.5" opacity="0.55" transform="rotate(-12 400 160)"/>
+  <ellipse cx="400" cy="160" rx="185" ry="64" fill="none" stroke="#0E8A6D" stroke-width="1.2" opacity="0.4" transform="rotate(8 400 160)"/>
+  <circle cx="400" cy="160" r="86" fill="url(#heroOrb)"/>
+  <circle cx="400" cy="160" r="58" fill="none" stroke="#15C39A" stroke-width="2" opacity="0.85"/>
+  <circle cx="400" cy="160" r="40" fill="none" stroke="#15C39A" stroke-width="1" opacity="0.4" stroke-dasharray="4 6"/>
+  <circle cx="400" cy="160" r="16" fill="#15C39A"/>
+  <circle cx="400" cy="160" r="16" fill="#ffffff" opacity="0.25"/>
+  <circle cx="612" cy="112" r="5" fill="#818CF8"/>
+  <circle cx="612" cy="112" r="9" fill="none" stroke="#818CF8" stroke-width="1" opacity="0.6"/>
+  <circle cx="205" cy="208" r="4" fill="#15C39A"/>
+  <circle cx="205" cy="208" r="8" fill="none" stroke="#15C39A" stroke-width="1" opacity="0.6"/>
+</svg>

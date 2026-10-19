@@ -1,0 +1,74 @@
+{
+  "name": "talverin-personal-ai-assistant",
+  "version": "1.0.0",
+  "private": true,
+  "main": "electron/main.js",
+  "scripts": {
+    "dev": "next dev",
+    "build": "next build",
+    "start": "next start",
+    "electron": "TALVERIN_DEV=1 electron .",
+    "dist": "TALVERIN_DIST=.next-prod next build && electron-builder --mac dmg"
+  },
+  "build": {
+    "appId": "in.shoumik4571.talverin",
+    "productName": "Talverin",
+    "directories": {
+      "output": "dist"
+    },
+    "files": [
+      "package.json",
+      "app/**/*",
+      "components/**/*",
+      "lib/**/*",
+      "public/**/*",
+      ".next-prod/**/*",
+      "next.config.mjs",
+      "electron/main.js"
+    ],
+    "extraResources": [
+      {
+        "from": ".env.local",
+        "to": ".env.local"
+      }
+    ],
+    "asarUnpack": [
+      "**/*.node"
+    ],
+    "mac": {
+      "target": ["dmg"],
+      "icon": "electron/assets/icon.icns",
+      "category": "public.app-category.productivity"
+    }
+  },
+  "dependencies": {
+    "@react-three/drei": "^10.7.9",
+    "@react-three/fiber": "^9.8.1",
+    "@vercel/analytics": "^1.5.0",
+    "class-variance-authority": "^0.7.1",
+    "clsx": "^2.1.1",
+    "framer-motion": "^12.4.7",
+    "lucide-react": "^0.475.0",
+    "motion": "^14.1.0",
+    "motion-primitives": "^0.1.0",
+    "next": "^15.2.4",
+    "react": "^19.0.0",
+    "react-dom": "^19.0.0",
+    "sonner": "^2.0.1",
+    "tailwind-merge": "^3.0.2",
+    "three": "^0.186.1"
+  },
+  "devDependencies": {
+    "@playwright/test": "^1.64.0",
+    "@tailwindcss/postcss": "^4.0.9",
+    "@types/node": "^22.13.5",
+    "@types/react": "^19.0.10",
+    "@types/react-dom": "^19.0.4",
+    "@types/three": "^0.186.0",
+    "electron": "^44.7.0",
+    "electron-builder": "^26.15.3",
+    "postcss": "^8.5.3",
+    "tailwindcss": "^4.0.9",
+    "typescript": "^5.7.3"
+  }
+}

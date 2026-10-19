@@ -1,0 +1,2230 @@
+@import 'tailwindcss';
+
+:root {
+  color-scheme: light;
+  --background: #f4f7f6;
+  --foreground: #0f172a;
+  --card: #ffffff;
+  --card-foreground: #0f172a;
+  --primary: #0e8a6d;
+  --primary-bright: #15c39a;
+  --primary-deep: #0b1917;
+  --border: #e2e8f0;
+  --radius: 0.75rem;
+  --shadow-card: 0 1px 2px rgba(15, 23, 42, 0.04), 0 8px 24px -6px rgba(15, 23, 42, 0.06);
+  --shadow-lift: 0 12px 32px -8px rgba(15, 23, 42, 0.12), 0 2px 8px rgba(15, 23, 42, 0.04);
+  --shadow-glow: 0 4px 18px rgba(17, 166, 131, 0.28);
+}
+
+html,
+body {
+  background-color: #f4f7f6 !important;
+  color: #0f172a !important;
+  font-family:
+    'Inter',
+    ui-sans-serif,
+    system-ui,
+    -apple-system,
+    'Segoe UI',
+    Roboto,
+    'Helvetica Neue',
+    Arial,
+    sans-serif;
+  font-feature-settings: 'cv02', 'cv03', 'cv04', 'cv11';
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+}
+
+.font-mono,
+code,
+kbd,
+pre,
+input[type='time'],
+input[type='date'] {
+  font-family:
+    'JetBrains Mono', ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
+  font-feature-settings: 'tnum' 1, 'cv05' 1;
+}
+
+/* ---------- Keyframes ---------- */
+@keyframes talverinFadeSlideIn {
+  from {
+    opacity: 0;
+    transform: translateY(14px) scale(0.99);
+    filter: blur(3px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+    filter: blur(0);
+  }
+}
+
+@keyframes talverinOrbFloat {
+  0%,
+  100% {
+    transform: translateY(0) scale(1);
+    box-shadow: 0 12px 35px -6px rgba(17, 166, 131, 0.45);
+  }
+  50% {
+    transform: translateY(-6px) scale(1.06);
+    box-shadow: 0 20px 45px -4px rgba(21, 195, 154, 0.55);
+  }
+}
+
+@keyframes talverinBellShake {
+  0%,
+  100% {
+    transform: rotate(0deg);
+  }
+  20% {
+    transform: rotate(-16deg) scale(1.08);
+  }
+  40% {
+    transform: rotate(16deg) scale(1.08);
+  }
+  60% {
+    transform: rotate(-10deg);
+  }
+  80% {
+    transform: rotate(10deg);
+  }
+}
+
+@keyframes talverinShimmer {
+  0% {
+    background-position: -200% 0;
+  }
+  100% {
+    background-position: 200% 0;
+  }
+}
+
+@keyframes talverinAuroraDrift {
+  0%,
+  100% {
+    transform: translate3d(-2%, 0, 0) scale(1);
+    opacity: 0.9;
+  }
+  50% {
+    transform: translate3d(2%, -1.5%, 0) scale(1.04);
+    opacity: 1;
+  }
+}
+
+@keyframes talverinPulseRing {
+  0% {
+    transform: scale(1);
+    opacity: 0.5;
+  }
+  100% {
+    transform: scale(1.55);
+    opacity: 0;
+  }
+}
+
+@keyframes talverinGradientPan {
+  0%,
+  100% {
+    background-position: 0% 50%;
+  }
+  50% {
+    background-position: 100% 50%;
+  }
+}
+
+.animate-step-enter {
+  animation: talverinFadeSlideIn 0.34s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+}
+
+.animate-orb-float {
+  animation: talverinOrbFloat 2.4s ease-in-out infinite;
+}
+
+.animate-bell-ring {
+  animation: talverinBellShake 0.85s ease-in-out infinite;
+}
+
+.animate-aurora-drift {
+  animation: talverinAuroraDrift 14s ease-in-out infinite;
+}
+
+@keyframes talverinGeoFloat {
+  0%,
+  100% {
+    transform: translateY(0) rotate(45deg);
+  }
+  50% {
+    transform: translateY(-14px) rotate(55deg);
+  }
+}
+
+.geo-float {
+  animation: talverinGeoFloat 7s ease-in-out infinite;
+}
+
+.geo-float-delayed {
+  animation: talverinGeoFloat 9s ease-in-out 1.2s infinite;
+}
+
+/* ---------- Magic UI keyframes ---------- */
+@keyframes magic-shimmer-slide {
+  to {
+    transform: translateX(200%);
+  }
+}
+
+.animate-shimmer-slide {
+  animation: magic-shimmer-slide var(--speed, 3s) ease-in-out infinite alternate;
+}
+
+@keyframes magic-spin-around {
+  from {
+    transform: translateZ(0) rotate(0deg);
+  }
+  to {
+    transform: translateZ(0) rotate(360deg);
+  }
+}
+
+.animate-spin-around {
+  animation: magic-spin-around var(--speed, 4s) linear infinite;
+}
+
+@keyframes magic-shiny-text {
+  0%,
+  90%,
+  100% {
+    background-position: calc(-100% - var(--shiny-width)) 0;
+  }
+  30%,
+  60% {
+    background-position: calc(100% + var(--shiny-width)) 0;
+  }
+}
+
+.animate-shiny-text {
+  animation: magic-shiny-text 8s infinite;
+}
+
+@keyframes magic-border-beam {
+  100% {
+    offset-distance: 100%;
+  }
+}
+
+.animate-border-beam {
+  animation: magic-border-beam var(--duration, 15s) infinite linear;
+  offset-distance: 0%;
+}
+
+@keyframes magic-meteor {
+  0% {
+    transform: rotate(215deg) translateX(0);
+    opacity: 1;
+  }
+  70% {
+    opacity: 1;
+  }
+  100% {
+    transform: rotate(215deg) translateX(-500px);
+    opacity: 0;
+  }
+}
+
+.animate-meteor {
+  animation: magic-meteor 5s linear infinite;
+}
+
+@keyframes magic-shine {
+  from {
+    background-position: 200% 0;
+  }
+  to {
+    background-position: -200% 0;
+  }
+}
+
+.animate-shine {
+  animation: magic-shine var(--duration, 14s) linear infinite;
+}
+
+.animate-shimmer-bar {
+  background: linear-gradient(90deg, #0e8a6d 0%, #15c39a 50%, #0e8a6d 100%);
+  background-size: 200% 100%;
+  animation: talverinShimmer 2s linear infinite;
+}
+
+/* ---------- Interaction primitives ---------- */
+.card-spring {
+  transition:
+    transform 0.18s cubic-bezier(0.34, 1.56, 0.64, 1),
+    box-shadow 0.18s ease,
+    border-color 0.18s ease,
+    background-color 0.15s ease;
+}
+
+.card-spring:hover {
+  transform: translateY(-3px);
+}
+
+.card-spring:active {
+  transform: scale(0.975);
+}
+
+.btn-shine {
+  position: relative;
+  overflow: hidden;
+  isolation: isolate;
+}
+
+.btn-shine::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  z-index: 1;
+  background: linear-gradient(
+    105deg,
+    transparent 35%,
+    rgba(255, 255, 255, 0.35) 50%,
+    transparent 65%
+  );
+  transform: translateX(-120%);
+  transition: transform 0.7s ease;
+  pointer-events: none;
+}
+
+.btn-shine:hover::after {
+  transform: translateX(120%);
+}
+
+.glass-panel {
+  background: rgba(255, 255, 255, 0.86);
+  backdrop-filter: blur(18px) saturate(1.2);
+  -webkit-backdrop-filter: blur(18px) saturate(1.2);
+}
+
+.inner-highlight {
+  box-shadow:
+    inset 0 1px 0 rgba(255, 255, 255, 0.9),
+    var(--shadow-card);
+}
+
+/* ---------- Scrollbars ---------- */
+* {
+  scrollbar-width: thin;
+  scrollbar-color: rgba(14, 138, 109, 0.35) transparent;
+}
+
+*::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+}
+
+*::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+*::-webkit-scrollbar-thumb {
+  background: rgba(14, 138, 109, 0.28);
+  border-radius: 999px;
+  border: 2px solid transparent;
+  background-clip: content-box;
+}
+
+*::-webkit-scrollbar-thumb:hover {
+  background: rgba(14, 138, 109, 0.48);
+  background-clip: content-box;
+}
+
+.no-scrollbar {
+  scrollbar-width: none;
+  -ms-overflow-style: none;
+}
+
+.no-scrollbar::-webkit-scrollbar {
+  display: none;
+}
+
+/* ---------- Form polish ---------- */
+input[type='time'],
+input[type='date'],
+input[type='text'],
+input[type='search'] {
+  color-scheme: light;
+}
+
+input::placeholder {
+  color: #94a3b8;
+}
+
+input:focus-visible,
+button:focus-visible {
+  outline: 2px solid rgba(21, 195, 154, 0.55);
+  outline-offset: 2px;
+}
+
+input[type='time']::-webkit-calendar-picker-indicator,
+input[type='date']::-webkit-calendar-picker-indicator {
+  opacity: 0.55;
+  cursor: pointer;
+}
+
+/* ---------- Selection / focus ---------- */
+::selection {
+  background: rgba(21, 195, 154, 0.22);
+  color: #0b3d31;
+}
+
+/* ---------- Reduced motion ---------- */
+@media (prefers-reduced-motion: reduce) {
+  .animate-step-enter,
+  .animate-orb-float,
+  .animate-bell-ring,
+  .animate-aurora-drift,
+  .animate-shimmer-bar,
+  .geo-float,
+  .geo-float-delayed,
+  .animate-shimmer-slide,
+  .animate-spin-around,
+  .animate-shiny-text,
+  .animate-border-beam,
+  .animate-meteor,
+  .animate-shine {
+    animation: none;
+  }
+
+  .card-spring,
+  .card-spring:hover,
+  .card-spring:active {
+    transform: none;
+    transition: none;
+  }
+
+  .btn-shine::after {
+    display: none;
+  }
+}
+
+/* =====================================================================
+   TALVERIN DARK THEME (.dark scope)
+   Base classes stay light; enabling .dark on the app root remaps every
+   light surface to the obsidian-emerald palette. Unlayered on purpose
+   so these beat Tailwind utilities; only exact light tokens are mapped.
+   ===================================================================== */
+.dark {
+  color-scheme: dark;
+}
+
+html:has(.dark) body {
+  background-color: #060d0b !important;
+  color: #e9f2ee !important;
+}
+
+.dark .glass-panel {
+  background: rgba(8, 17, 14, 0.85);
+}
+
+.dark input,
+.dark textarea {
+  caret-color: #15c39a;
+}
+
+.dark input[type='time'],
+.dark input[type='date'] {
+  color-scheme: dark;
+}
+
+/* --- surfaces --- */
+.dark .bg-white {
+  background-color: #0c1a16;
+}
+.dark .bg-white\/60 {
+  background-color: rgba(12, 26, 22, 0.68);
+}
+.dark .bg-white\/70 {
+  background-color: rgba(12, 26, 22, 0.74);
+}
+.dark .bg-white\/75 {
+  background-color: rgba(12, 26, 22, 0.8);
+}
+.dark .bg-white\/80 {
+  background-color: rgba(12, 26, 22, 0.84);
+}
+.dark .bg-white\/85 {
+  background-color: rgba(12, 26, 22, 0.87);
+}
+.dark .bg-white\/90 {
+  background-color: rgba(12, 26, 22, 0.9);
+}
+.dark .bg-white\/95 {
+  background-color: rgba(12, 26, 22, 0.95);
+}
+.dark .bg-slate-50,
+.dark .bg-slate-50\/50,
+.dark .bg-slate-50\/60,
+.dark .bg-slate-50\/70,
+.dark .bg-slate-50\/80,
+.dark .bg-slate-50\/90 {
+  background-color: rgba(255, 255, 255, 0.045);
+}
+.dark .bg-slate-100,
+.dark .bg-slate-100\/80 {
+  background-color: rgba(255, 255, 255, 0.08);
+}
+.dark .bg-slate-200 {
+  background-color: rgba(255, 255, 255, 0.12);
+}
+.dark .bg-slate-300,
+.dark .bg-slate-300\/80 {
+  background-color: rgba(255, 255, 255, 0.18);
+}
+.dark .bg-slate-400 {
+  background-color: #4a5f57;
+}
+.dark .bg-slate-900\/\[0\.04\] {
+  background-color: rgba(255, 255, 255, 0.06);
+}
+.dark .bg-emerald-50,
+.dark .bg-emerald-50\/50,
+.dark .bg-emerald-50\/60 {
+  background-color: rgba(21, 195, 154, 0.13);
+}
+.dark .bg-indigo-50,
+.dark .bg-indigo-50\/40 {
+  background-color: rgba(129, 140, 248, 0.13);
+}
+.dark .bg-teal-50 {
+  background-color: rgba(45, 212, 191, 0.13);
+}
+.dark .bg-violet-50 {
+  background-color: rgba(167, 139, 250, 0.13);
+}
+.dark .bg-sky-50 {
+  background-color: rgba(125, 211, 252, 0.13);
+}
+.dark .bg-amber-50,
+.dark .bg-amber-50\/90 {
+  background-color: rgba(251, 191, 36, 0.12);
+}
+.dark .hover\:bg-slate-50:hover {
+  background-color: rgba(255, 255, 255, 0.07);
+}
+.dark .hover\:bg-slate-100:hover,
+.dark .hover\:bg-slate-100\/80:hover {
+  background-color: rgba(255, 255, 255, 0.1);
+}
+.dark .hover\:bg-white:hover,
+.dark .hover\:bg-white\/95:hover {
+  background-color: rgba(255, 255, 255, 0.08);
+}
+.dark .hover\:bg-amber-100:hover,
+.dark .hover\:bg-amber-50:hover {
+  background-color: rgba(251, 191, 36, 0.18);
+}
+.dark .hover\:bg-emerald-50:hover {
+  background-color: rgba(21, 195, 154, 0.16);
+}
+.dark .hover\:bg-rose-50:hover {
+  background-color: rgba(251, 113, 133, 0.14);
+}
+.dark .hover\:bg-slate-400:hover {
+  background-color: rgba(255, 255, 255, 0.25);
+}
+
+/* --- text --- */
+.dark .text-slate-900 {
+  color: #e9f2ee;
+}
+.dark .text-slate-800 {
+  color: #d2dfd9;
+}
+.dark .text-slate-700 {
+  color: #b3c5bd;
+}
+.dark .text-slate-600 {
+  color: #92a79f;
+}
+.dark .text-slate-500 {
+  color: #71867e;
+}
+.dark .text-slate-400 {
+  color: #7f938b;
+}
+.dark .text-emerald-950 {
+  color: #a7f3d0;
+}
+.dark .text-emerald-800 {
+  color: #6ee7b7;
+}
+.dark .text-emerald-700 {
+  color: #34d399;
+}
+.dark .text-indigo-800,
+.dark .text-indigo-700 {
+  color: #a5b4fc;
+}
+.dark .text-violet-800,
+.dark .text-violet-700 {
+  color: #c4b5fd;
+}
+.dark .text-sky-800,
+.dark .text-sky-700 {
+  color: #7dd3fc;
+}
+.dark .text-teal-700 {
+  color: #5eead4;
+}
+.dark .text-amber-900,
+.dark .text-amber-700 {
+  color: #fcd34d;
+}
+.dark .text-amber-800 {
+  color: #fbbf24;
+}
+.dark .text-rose-600 {
+  color: #fda4af;
+}
+.dark .text-\[\#0E8A6D\] {
+  color: #2fd0a4;
+}
+.dark .hover\:text-slate-900:hover {
+  color: #e9f2ee;
+}
+.dark .hover\:text-slate-600:hover {
+  color: #b3c5bd;
+}
+.dark .hover\:text-\[\#0E8A6D\]:hover {
+  color: #2fd0a4;
+}
+.dark .hover\:text-rose-600:hover {
+  color: #fda4af;
+}
+.dark .hover\:text-amber-700:hover {
+  color: #fcd34d;
+}
+.dark .placeholder\:text-slate-400::placeholder {
+  color: #5d736b;
+}
+
+/* --- borders / dividers --- */
+.dark .border-slate-200\/80,
+.dark .border-slate-200\/90,
+.dark .border-slate-200\/70,
+.dark .border-slate-200\/60,
+.dark .border-slate-200,
+.dark .border-slate-100,
+.dark .border-white\/80 {
+  border-color: rgba(255, 255, 255, 0.09);
+}
+.dark .border-slate-300 {
+  border-color: rgba(255, 255, 255, 0.16);
+}
+.dark .border-slate-900\/\[0\.04\],
+.dark .border-slate-900\/\[0\.05\],
+.dark .border-slate-900\/\[0\.06\],
+.dark .border-slate-900\/\[0\.08\],
+.dark .border-slate-900\/10 {
+  border-color: rgba(255, 255, 255, 0.08);
+}
+.dark .border-emerald-200\/80 {
+  border-color: rgba(21, 195, 154, 0.3);
+}
+.dark .border-indigo-200\/80 {
+  border-color: rgba(129, 140, 248, 0.3);
+}
+.dark .border-teal-200\/80 {
+  border-color: rgba(45, 212, 191, 0.3);
+}
+.dark .border-violet-200\/80 {
+  border-color: rgba(167, 139, 250, 0.3);
+}
+.dark .border-sky-200\/80 {
+  border-color: rgba(125, 211, 252, 0.3);
+}
+.dark .border-amber-200\/80 {
+  border-color: rgba(251, 191, 36, 0.3);
+}
+.dark .hover\:border-slate-300:hover {
+  border-color: rgba(255, 255, 255, 0.28);
+}
+.dark .divide-slate-100 > :not([hidden]) ~ :not([hidden]) {
+  border-color: rgba(255, 255, 255, 0.08);
+}
+
+/* --- rings --- */
+.dark .ring-slate-900\/\[0\.04\],
+.dark .ring-slate-900\/\[0\.05\],
+.dark .ring-slate-900\/\[0\.06\],
+.dark .ring-slate-900\/\[0\.07\],
+.dark .ring-slate-900\/\[0\.08\],
+.dark .ring-slate-900\/\[0\.12\],
+.dark .ring-slate-900\/10 {
+  --tw-ring-color: rgba(255, 255, 255, 0.1);
+}
+.dark .hover\:ring-slate-900\/\[0\.12\]:hover {
+  --tw-ring-color: rgba(255, 255, 255, 0.22);
+}
+.dark .ring-slate-50,
+.dark .ring-slate-100 {
+  --tw-ring-color: rgba(255, 255, 255, 0.16);
+}
+
+/* =====================================================================
+   AURORA WORKSPACE THEME (.aurora scope, active with .dark)
+   Liquid-glass dashboard language: storm-photo backdrop + frosted
+   white-translucent cards + one-shot specular sheen. Unlayered so these
+   beat utilities; declared after .dark rules so they win ties.
+   ===================================================================== */
+.aurora-scene {
+  position: fixed;
+  inset: 0;
+  z-index: 0;
+  overflow: hidden;
+  background-color: #04121b;
+  background-image: url('/media/storm-background.jpg');
+  background-size: cover;
+  background-position: center 25%;
+  background-repeat: no-repeat;
+}
+
+.aurora-scene::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  background:
+    linear-gradient(
+      105deg,
+      rgba(4, 16, 24, 0.5) 0%,
+      rgba(4, 16, 24, 0.3) 40%,
+      rgba(4, 16, 24, 0.12) 78%,
+      transparent 100%
+    ),
+    linear-gradient(180deg, rgba(4, 16, 24, 0.28) 0%, transparent 26%),
+    linear-gradient(0deg, rgba(3, 9, 8, 0.6), rgba(3, 9, 8, 0.18) 42%, transparent 65%);
+}
+
+.font-display {
+  font-family: 'Inter Tight', 'Inter', ui-sans-serif, system-ui, sans-serif;
+}
+
+/* Dock becomes the weather glass sidebar */
+.aurora-dock {
+  background: linear-gradient(
+    180deg,
+    rgba(255, 255, 255, 0.125) 0%,
+    rgba(255, 255, 255, 0.135) 13%,
+    rgba(255, 255, 255, 0.098) 34%,
+    rgba(255, 255, 255, 0.092) 100%
+  );
+  backdrop-filter: blur(18px) saturate(115%);
+  -webkit-backdrop-filter: blur(18px) saturate(115%);
+}
+
+/* Content cards stay near-opaque dark frosted for legibility —
+   translucency lives on the chrome (dock, header, strips), not the ink.
+   Backdrop blur is intentionally omitted here: at ~90% opacity there is
+   nothing to frost, and blurring a live canvas per card destroys fps. */
+.aurora .bg-white {
+  background: linear-gradient(
+    180deg,
+    rgba(13, 27, 23, 0.94) 0%,
+    rgba(9, 18, 15, 0.9) 100%
+  );
+  backdrop-filter: none;
+  -webkit-backdrop-filter: none;
+}
+
+.aurora .bg-white\/60,
+.aurora .bg-white\/70,
+.aurora .bg-white\/75,
+.aurora .bg-white\/80,
+.aurora .bg-white\/85,
+.aurora .bg-white\/90,
+.aurora .bg-white\/95 {
+  background-color: rgba(9, 18, 15, 0.85);
+  backdrop-filter: none;
+  -webkit-backdrop-filter: none;
+}
+
+/* Perf: utility blurs add nothing over near-opaque aurora surfaces —
+   glass-panel / dock keep their own frost. */
+.aurora .backdrop-blur-md,
+.aurora .backdrop-blur-xl,
+.aurora .backdrop-blur-sm {
+  backdrop-filter: none;
+  -webkit-backdrop-filter: none;
+}
+
+.aurora .bg-slate-50,
+.aurora .bg-slate-50\/50,
+.aurora .bg-slate-50\/60,
+.aurora .bg-slate-50\/70,
+.aurora .bg-slate-50\/80,
+.aurora .bg-slate-50\/90,
+.aurora .bg-slate-100,
+.aurora .bg-slate-100\/80 {
+  background-color: rgba(255, 255, 255, 0.07);
+}
+
+.aurora .hover\:bg-white:hover,
+.aurora .hover\:bg-white\/90:hover,
+.aurora .hover\:bg-white\/95:hover,
+.aurora .hover\:bg-slate-50:hover,
+.aurora .hover\:bg-slate-100:hover {
+  background-color: rgba(255, 255, 255, 0.12);
+}
+
+/* One-shot specular sweep for tagged surfaces */
+.aurora-sheen {
+  position: relative;
+  overflow: hidden;
+}
+
+.aurora-sheen::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  width: 38%;
+  pointer-events: none;
+  background: linear-gradient(
+    100deg,
+    transparent 0%,
+    rgba(255, 255, 255, 0.17) 50%,
+    transparent 100%
+  );
+  animation: aurora-sheen 1.15s cubic-bezier(0.22, 0.61, 0.36, 1) 2.55s 1 both;
+}
+
+@keyframes aurora-sheen {
+  from {
+    transform: translate3d(-150%, 0, 0) skewX(-18deg);
+  }
+  to {
+    transform: translate3d(260%, 0, 0) skewX(-18deg);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .aurora-sheen::after {
+    display: none;
+  }
+}
+
+/* =====================================================================
+   ADMINCN WORKSPACE THEME (.admincn scope, active with .dark)
+   Solid near-black shadcn cards over a flat background. Declared last
+   so it wins ties against .dark / .aurora rules.
+   ===================================================================== */
+.admincn .bg-white {
+  background-color: #111114;
+  backdrop-filter: none;
+  -webkit-backdrop-filter: none;
+}
+
+.admincn .bg-white\/60,
+.admincn .bg-white\/70,
+.admincn .bg-white\/75,
+.admincn .bg-white\/80,
+.admincn .bg-white\/85,
+.admincn .bg-white\/90,
+.admincn .bg-white\/95 {
+  background-color: #131316;
+  backdrop-filter: none;
+  -webkit-backdrop-filter: none;
+}
+
+.admincn .bg-slate-50,
+.admincn .bg-slate-50\/50,
+.admincn .bg-slate-50\/60,
+.admincn .bg-slate-50\/70,
+.admincn .bg-slate-50\/80,
+.admincn .bg-slate-50\/90,
+.admincn .bg-slate-100,
+.admincn .bg-slate-100\/80 {
+  background-color: rgba(255, 255, 255, 0.045);
+}
+
+.admincn .hover\:bg-white:hover,
+.admincn .hover\:bg-white\/90:hover,
+.admincn .hover\:bg-white\/95:hover,
+.admincn .hover\:bg-slate-50:hover,
+.admincn .hover\:bg-slate-100:hover {
+  background-color: rgba(255, 255, 255, 0.09);
+}
+
+/* =====================================================================
+   SUNDREL LIGHT THEME (.sundrel scope) — cream + lime + black dashboard.
+   Base light classes already suit cream; this remaps emerald accents,
+   goal rainbows and CTA gradients into the monochrome + lime system.
+   Unlayered so these beat utilities; exact tokens only.
+   ===================================================================== */
+html:has(.sundrel) body {
+  background-color: #efede6 !important;
+  color: #141414 !important;
+}
+
+.sundrel * {
+  scrollbar-color: rgba(20, 20, 20, 0.35) transparent;
+}
+
+.sundrel *::-webkit-scrollbar-thumb {
+  background: rgba(20, 20, 20, 0.28);
+  background-clip: content-box;
+}
+
+.sundrel .bg-\[\#F4F7F6\] {
+  background-color: #efede6;
+}
+
+/* CTA gradients become black pills */
+.sundrel [class*='from-[#14B892]'],
+.sundrel [class*='from-[#0E8A6D]'],
+.sundrel [class*='from-[#18D2A6]'],
+.sundrel [class*='from-[#11A683]'],
+.sundrel [class*='from-indigo-600'],
+.sundrel [class*='from-violet-600'],
+.sundrel [class*='from-sky-600'] {
+  --tw-gradient-from: #1a1a1a;
+}
+.sundrel [class*='to-[#0E8A6D]'],
+.sundrel [class*='to-[#11A683]'],
+.sundrel [class*='to-[#15C39A]'],
+.sundrel [class*='to-violet-500'],
+.sundrel [class*='to-fuchsia-500'],
+.sundrel [class*='to-cyan-500'] {
+  --tw-gradient-to: #1a1a1a;
+}
+
+/* Accent bars, dots and peaks become near-black */
+.sundrel .bg-\[\#11A683\],
+.sundrel .bg-indigo-600,
+.sundrel .bg-violet-600,
+.sundrel .bg-sky-600,
+.sundrel .bg-\[\#15C39A\],
+.sundrel .bg-\[\#4F7DF9\],
+.sundrel .bg-indigo-400\/80 {
+  background-color: #1a1a1a;
+}
+.sundrel .bg-violet-500\/70 {
+  background-color: #d9d4bf;
+}
+.sundrel .donut-arc {
+  stroke: #141414;
+}
+
+/* Accent text becomes near-black (lime pills keep dark text) */
+.sundrel .text-\[\#0E8A6D\],
+.sundrel .text-emerald-800,
+.sundrel .text-emerald-700,
+.sundrel .text-emerald-950,
+.sundrel .text-indigo-800,
+.sundrel .text-indigo-700,
+.sundrel .text-violet-800,
+.sundrel .text-violet-700,
+.sundrel .text-sky-800,
+.sundrel .text-sky-700,
+.sundrel .text-teal-700,
+.sundrel .text-amber-800,
+.sundrel .text-amber-900,
+.sundrel .text-amber-700 {
+  color: #1a1a1a;
+}
+.sundrel .hover\:text-\[\#0E8A6D\]:hover {
+  color: #1a1a1a;
+}
+.sundrel .text-emerald-300 {
+  color: #d9e87c;
+}
+.sundrel .border-\[\#11A683\] {
+  border-color: #b9d94a;
+}
+
+/* Hue-tinted chips become lime-tint / cream neutrals */
+.sundrel .bg-emerald-500\/10,
+.sundrel .bg-emerald-500\/15,
+.sundrel .bg-indigo-500\/10,
+.sundrel .bg-violet-500\/10,
+.sundrel .bg-sky-500\/10,
+.sundrel .bg-amber-500\/10 {
+  background-color: rgba(190, 205, 90, 0.38);
+}
+.sundrel .bg-emerald-50,
+.sundrel .bg-indigo-50,
+.sundrel .bg-teal-50,
+.sundrel .bg-violet-50,
+.sundrel .bg-sky-50,
+.sundrel .bg-amber-50 {
+  background-color: #efead6;
+}
+.sundrel .bg-emerald-50\/60,
+.sundrel .bg-indigo-50\/40 {
+  background-color: rgba(190, 205, 90, 0.3);
+}
+.sundrel .border-emerald-200\/80,
+.sundrel .border-indigo-200\/80,
+.sundrel .border-teal-200\/80,
+.sundrel .border-violet-200\/80,
+.sundrel .border-sky-200\/80,
+.sundrel .border-amber-200\/80 {
+  border-color: rgba(20, 20, 20, 0.14);
+}
+
+.sundrel [class*='focus:border-[#11A683]']:focus {
+  border-color: #1a1a1a;
+}
+.sundrel [class*='ring-[#15C39A]'] {
+  --tw-ring-color: rgba(120, 140, 40, 0.35);
+}
+
+/* Teal artwork steps aside for the lime theme */
+.sundrel .media-banner {
+  display: none;
+}
+
+.sundrel .bg-white\/\[0\.14\],
+.sundrel .bg-white\/\[0\.1\],
+.sundrel .bg-white\/\[0\.08\] {
+  background-color: #e4e1d3;
+}
+
+.sundrel .bg-\[\#4F7DF9\]\/40,
+.sundrel .bg-violet-500\/70 {
+  background-color: #d9d4bf;
+}
+
+.sundrel .bg-indigo-400\/80 {
+  background-color: #1a1a1a;
+}
+
+.sundrel .donut-track {
+  stroke: #e4e1d3;
+}
+
+/* =====================================================================
+   AI CHAT (.aichat-*) — fully static styling (scanner-proof).
+   ===================================================================== */
+.aichat-panel {
+  position: fixed;
+  z-index: 40;
+  left: 16px;
+  bottom: 96px;
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+  width: min(384px, calc(100vw - 2rem));
+  height: min(580px, 62vh);
+  border-radius: 26px;
+  background: #fff;
+  box-shadow: 0 32px 80px -16px rgba(15, 23, 42, 0.35);
+  border: 1px solid rgba(15, 23, 42, 0.1);
+}
+
+@media (min-width: 768px) {
+  .aichat-panel {
+    left: 24px;
+  }
+}
+
+.aichat-head {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  background: #0b0b0c;
+  color: #fff;
+  padding: 16px 20px;
+}
+
+.aichat-brand {
+  display: flex;
+  min-width: 0;
+  align-items: center;
+  gap: 10px;
+}
+
+.aichat-presence {
+  position: relative;
+  display: flex;
+  width: 10px;
+  height: 10px;
+  flex: none;
+}
+
+.aichat-ping {
+  position: absolute;
+  inset: 0;
+  border-radius: 999px;
+  background: #cde06a;
+  opacity: 0.6;
+  animation: aichat-ping 1.6s cubic-bezier(0, 0, 0.2, 1) infinite;
+}
+
+@keyframes aichat-ping {
+  0% {
+    transform: scale(1);
+    opacity: 0.6;
+  }
+  80%,
+  100% {
+    transform: scale(2.4);
+    opacity: 0;
+  }
+}
+
+.aichat-dot-live {
+  position: relative;
+  display: inline-flex;
+  width: 10px;
+  height: 10px;
+  border-radius: 999px;
+  background: #cde06a;
+}
+
+.aichat-titles {
+  min-width: 0;
+}
+
+.aichat-name {
+  display: block;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  font-size: 14px;
+  font-weight: 700;
+  letter-spacing: -0.01em;
+}
+
+.aichat-tag {
+  display: block;
+  font-size: 11px;
+  color: #a1a1aa;
+}
+
+.aichat-x {
+  cursor: pointer;
+  border-radius: 8px;
+  padding: 6px;
+  color: #a1a1aa;
+  background: transparent;
+  border: 0;
+}
+
+.aichat-x:hover {
+  background: rgba(255, 255, 255, 0.1);
+  color: #fff;
+}
+
+.aichat-list {
+  flex: 1;
+  overflow-y: auto;
+  background: #efede6;
+  padding: 16px;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.aichat-sys {
+  padding: 0 8px;
+  text-align: center;
+  font-size: 11px;
+  font-weight: 500;
+  color: #71717a;
+}
+
+.aichat-row-user {
+  display: flex;
+  justify-content: flex-end;
+}
+
+.aichat-row-ai {
+  display: flex;
+  justify-content: flex-start;
+}
+
+.aichat-bu {
+  max-width: 85%;
+  white-space: pre-wrap;
+  border-radius: 16px;
+  border-bottom-right-radius: 6px;
+  background: #141414;
+  color: #fff;
+  padding: 10px 14px;
+  font-size: 13px;
+  line-height: 1.55;
+  margin: 0;
+}
+
+.aichat-bai {
+  max-width: 88%;
+  white-space: pre-wrap;
+  border-radius: 16px;
+  border-bottom-left-radius: 6px;
+  border: 1px solid rgba(15, 23, 42, 0.06);
+  background: #fff;
+  color: #0f172a;
+  padding: 10px 14px;
+  font-size: 13px;
+  line-height: 1.55;
+  margin: 0;
+  box-shadow: 0 1px 2px rgba(15, 23, 42, 0.05);
+}
+
+.aichat-typing {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  border-radius: 16px;
+  border-bottom-left-radius: 6px;
+  border: 1px solid rgba(15, 23, 42, 0.06);
+  background: #fff;
+  padding: 12px 14px;
+  box-shadow: 0 1px 2px rgba(15, 23, 42, 0.05);
+}
+
+.aichat-tdot {
+  width: 6px;
+  height: 6px;
+  border-radius: 999px;
+  background: #94a3b8;
+  display: inline-block;
+}
+
+.aichat-chips {
+  display: flex;
+  gap: 6px;
+  overflow-x: auto;
+  border-top: 1px solid rgba(15, 23, 42, 0.06);
+  background: #fff;
+  padding: 8px 12px;
+}
+
+.aichat-chip {
+  flex: none;
+  cursor: pointer;
+  border-radius: 999px;
+  background: #f1f5f9;
+  border: 0;
+  padding: 6px 12px;
+  font-size: 11px;
+  font-weight: 600;
+  color: #334155;
+}
+
+.aichat-chip:hover {
+  background: #cde06a;
+  color: #141414;
+}
+
+.aichat-form {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  border-top: 1px solid rgba(15, 23, 42, 0.06);
+  background: #fff;
+  padding: 12px;
+}
+
+.aichat-input {
+  min-width: 0;
+  flex: 1;
+  border-radius: 12px;
+  background: #f1f5f9;
+  border: 0;
+  outline: none;
+  padding: 10px 14px;
+  font-size: 13px;
+  color: #0f172a;
+}
+
+.aichat-input::placeholder {
+  color: #94a3b8;
+}
+
+.aichat-input:focus {
+  box-shadow: 0 0 0 2px rgba(20, 20, 20, 0.2);
+}
+
+.aichat-send {
+  display: inline-flex;
+  width: 40px;
+  height: 40px;
+  flex: none;
+  cursor: pointer;
+  align-items: center;
+  justify-content: center;
+  border-radius: 12px;
+  border: 0;
+  background: #141414;
+  color: #fff;
+  transition: transform 0.15s ease;
+}
+
+.aichat-send:hover:not(:disabled) {
+  transform: scale(1.05);
+}
+
+.aichat-send:disabled {
+  opacity: 0.4;
+  cursor: default;
+}
+
+.aichat-fab {
+  position: fixed;
+  z-index: 40;
+  left: 16px;
+  bottom: 96px;
+  display: flex;
+  width: 56px;
+  height: 56px;
+  cursor: pointer;
+  align-items: center;
+  justify-content: center;
+  border-radius: 999px;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  background: #141414;
+  color: #cde06a;
+  box-shadow: 0 16px 40px -8px rgba(15, 23, 42, 0.45);
+}
+
+@media (min-width: 768px) {
+  .aichat-fab {
+    left: 24px;
+    bottom: 24px;
+  }
+}
+
+.aichat-unread {
+  position: absolute;
+  right: -2px;
+  top: -2px;
+  width: 14px;
+  height: 14px;
+  border-radius: 999px;
+  background: #cde06a;
+  border: 2px solid #141414;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .aichat-ping {
+    animation: none;
+  }
+}
+
+/* =====================================================================
+   AI CHAT FULLSCREEN (.aichat-fullscreen-*) — maximized chat with uploads
+   ===================================================================== */
+.aichat-fullscreen {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  width: 100%;
+  background: #fff;
+  border-radius: 24px;
+  overflow: hidden;
+}
+
+.aichat-fullscreen-head {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  padding: 16px 20px;
+  border-bottom: 1px solid rgba(15, 23, 42, 0.06);
+  background: #fff;
+}
+
+.aichat-fullscreen-brand {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  min-width: 0;
+}
+
+.aichat-fullscreen-presence {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.aichat-fullscreen-ping {
+  position: relative;
+  display: inline-flex;
+  width: 8px;
+  height: 8px;
+  border-radius: 999px;
+  background: #15c39a;
+}
+
+.aichat-fullscreen-ping::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  border-radius: 999px;
+  background: #15c39a;
+  opacity: 0.5;
+  animation: aichat-fullscreen-ping 1.6s cubic-bezier(0, 0, 0.2, 1) infinite;
+}
+
+@keyframes aichat-fullscreen-ping {
+  0% {
+    transform: scale(1);
+    opacity: 0.5;
+  }
+  80%,
+  100% {
+    transform: scale(2.4);
+    opacity: 0;
+  }
+}
+
+.aichat-fullscreen-dot-live {
+  display: inline-flex;
+  width: 6px;
+  height: 6px;
+  border-radius: 999px;
+  background: #15c39a;
+}
+
+.aichat-fullscreen-name {
+  font-size: 16px;
+  font-weight: 700;
+  color: #0f172a;
+  letter-spacing: -0.01em;
+}
+
+.aichat-fullscreen-tag {
+  font-size: 12px;
+  color: #64748b;
+}
+
+.aichat-fullscreen-list {
+  flex: 1;
+  overflow-y: auto;
+  padding: 16px;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  background: #fafafa;
+}
+
+.aichat-fullscreen-sys {
+  text-align: center;
+  font-size: 12px;
+  font-weight: 500;
+  color: #94a3b8;
+  padding: 8px 16px;
+  background: #f1f5f9;
+  border-radius: 12px;
+}
+
+.aichat-fullscreen-row-user {
+  display: flex;
+  justify-content: flex-end;
+}
+
+.aichat-fullscreen-row-ai {
+  display: flex;
+  justify-content: flex-start;
+}
+
+.aichat-fullscreen-bu {
+  max-width: 85%;
+  white-space: pre-wrap;
+  border-radius: 18px;
+  border-bottom-right-radius: 6px;
+  background: #0f172a;
+  color: #fff;
+  padding: 12px 16px;
+  font-size: 14px;
+  line-height: 1.6;
+  margin: 0;
+}
+
+.aichat-fullscreen-bai {
+  max-width: 85%;
+  white-space: pre-wrap;
+  border-radius: 18px;
+  border-bottom-left-radius: 6px;
+  border: 1px solid rgba(15, 23, 42, 0.06);
+  background: #fff;
+  color: #0f172a;
+  padding: 12px 16px;
+  font-size: 14px;
+  line-height: 1.6;
+  margin: 0;
+  box-shadow: 0 1px 2px rgba(15, 23, 42, 0.05);
+}
+
+.aichat-fullscreen-row-user > div,
+.aichat-fullscreen-row-ai > div {
+  max-width: 85%;
+}
+
+.aichat-fullscreen-row-user .aichat-fullscreen-bu {
+  border-bottom-right-radius: 6px;
+}
+
+.aichat-fullscreen-row-ai .aichat-fullscreen-bai {
+  border-bottom-left-radius: 6px;
+}
+
+.aichat-fullscreen-typing {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  border-radius: 18px;
+  border-bottom-left-radius: 6px;
+  border: 1px solid rgba(15, 23, 42, 0.06);
+  background: #fff;
+  padding: 14px 18px;
+  box-shadow: 0 1px 2px rgba(15, 23, 42, 0.05);
+}
+
+.aichat-fullscreen-tdot {
+  width: 6px;
+  height: 6px;
+  border-radius: 999px;
+  background: #94a3b8;
+  display: inline-block;
+}
+
+.aichat-fullscreen-attachments {
+  border-top: 1px solid rgba(15, 23, 42, 0.06);
+  background: #f8fafc;
+  padding: 12px 16px;
+}
+
+.aichat-fullscreen-chips {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  padding: 8px 16px 0;
+}
+
+.aichat-fullscreen-chip {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  border-radius: 999px;
+  background: #fff;
+  padding: 8px 14px;
+  font-size: 12px;
+  font-weight: 600;
+  color: #334155;
+  border: 1px solid rgba(15, 23, 42, 0.06);
+  transition: all 0.15s ease;
+}
+
+.aichat-fullscreen-chip:hover {
+  background: #cde06a;
+  color: #141414;
+}
+
+.aichat-fullscreen-form {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  border-top: 1px solid rgba(15, 23, 42, 0.06);
+  background: #fff;
+  padding: 16px;
+}
+
+.aichat-fullscreen-input-area {
+  border-top: 1px solid rgba(15, 23, 42, 0.06);
+  background: #fff;
+  padding: 16px;
+}
+
+.aichat-fullscreen-input {
+  width: 100%;
+  border-radius: 16px;
+  background: #f1f5f9;
+  border: 1px solid rgba(15, 23, 42, 0.06);
+  outline: none;
+  padding: 12px 16px;
+  font-size: 14px;
+  color: #0f172a;
+  transition: all 0.15s ease;
+}
+
+.aichat-fullscreen-input::placeholder {
+  color: #94a3b8;
+}
+
+.aichat-fullscreen-input:focus {
+  box-shadow: 0 0 0 2px rgba(21, 195, 154, 0.2);
+  border-color: #15c39a;
+}
+
+.aichat-fullscreen-send {
+  display: inline-flex;
+  width: 44px;
+  height: 44px;
+  flex: none;
+  cursor: pointer;
+  align-items: center;
+  justify-content: center;
+  border-radius: 14px;
+  border: 0;
+  background: linear-gradient(135deg, #14b892, #0e8a6d);
+  color: #fff;
+  font-weight: 600;
+  font-size: 14px;
+  transition: all 0.15s ease;
+  box-shadow: 0 4px 16px rgba(21, 195, 154, 0.3);
+}
+
+.aichat-fullscreen-send:hover:not(:disabled) {
+  transform: scale(1.03);
+  box-shadow: 0 6px 20px rgba(21, 195, 154, 0.4);
+}
+
+.aichat-fullscreen-send:disabled {
+  opacity: 0.4;
+  cursor: default;
+}
+
+.aichat-fullscreen-chips {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  padding: 8px 16px 0;
+}
+
+.aichat-fullscreen-chip {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  border-radius: 999px;
+  background: #fff;
+  padding: 8px 14px;
+  font-size: 12px;
+  font-weight: 600;
+  color: #334155;
+  border: 1px solid rgba(15, 23, 42, 0.06);
+  transition: all 0.15s ease;
+}
+
+.aichat-fullscreen-chip:hover {
+  background: #cde06a;
+  color: #141414;
+}
+
+.aichat-fullscreen-form {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  border-top: 1px solid rgba(15, 23, 42, 0.06);
+  background: #fff;
+  padding: 16px;
+}
+
+.aichat-fullscreen-input-area {
+  border-top: 1px solid rgba(15, 23, 42, 0.06);
+  background: #fff;
+  padding: 16px;
+}
+
+.aichat-fullscreen-input {
+  width: 100%;
+  border-radius: 16px;
+  background: #f1f5f9;
+  border: 1px solid rgba(15, 23, 42, 0.06);
+  outline: none;
+  padding: 12px 16px;
+  font-size: 14px;
+  color: #0f172a;
+  transition: all 0.15s ease;
+}
+
+.aichat-fullscreen-input::placeholder {
+  color: #94a3b8;
+}
+
+.aichat-fullscreen-input:focus {
+  box-shadow: 0 0 0 2px rgba(21, 195, 154, 0.2);
+  border-color: #15c39a;
+}
+
+.aichat-fullscreen-send {
+  display: inline-flex;
+  width: 44px;
+  height: 44px;
+  flex: none;
+  cursor: pointer;
+  align-items: center;
+  justify-content: center;
+  border-radius: 14px;
+  border: 0;
+  background: linear-gradient(135deg, #14b892, #0e8a6d);
+  color: #fff;
+  font-weight: 600;
+  font-size: 14px;
+  transition: all 0.15s ease;
+  box-shadow: 0 4px 16px rgba(21, 195, 154, 0.3);
+}
+
+.aichat-fullscreen-send:hover:not(:disabled) {
+  transform: scale(1.03);
+  box-shadow: 0 6px 20px rgba(21, 195, 154, 0.4);
+}
+
+.aichat-fullscreen-send:disabled {
+  opacity: 0.4;
+  cursor: default;
+}
+
+.aichat-fullscreen-chips {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  padding: 8px 16px 0;
+}
+
+.aichat-fullscreen-chip {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  border-radius: 999px;
+  background: #fff;
+  padding: 8px 14px;
+  font-size: 12px;
+  font-weight: 600;
+  color: #334155;
+  border: 1px solid rgba(15, 23, 42, 0.06);
+  transition: all 0.15s ease;
+}
+
+.aichat-fullscreen-chip:hover {
+  background: #cde06a;
+  color: #141414;
+}
+
+.aichat-fullscreen-form {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  border-top: 1px solid rgba(15, 23, 42, 0.06);
+  background: #fff;
+  padding: 16px;
+}
+
+.aichat-fullscreen-input-area {
+  border-top: 1px solid rgba(15, 23, 42, 0.06);
+  background: #fff;
+  padding: 16px;
+}
+
+.aichat-fullscreen-input {
+  width: 100%;
+  border-radius: 16px;
+  background: #f1f5f9;
+  border: 1px solid rgba(15, 23, 42, 0.06);
+  outline: none;
+  padding: 12px 16px;
+  font-size: 14px;
+  color: #0f172a;
+  transition: all 0.15s ease;
+}
+
+.aichat-fullscreen-input::placeholder {
+  color: #94a3b8;
+}
+
+.aichat-fullscreen-input:focus {
+  box-shadow: 0 0 0 2px rgba(21, 195, 154, 0.2);
+  border-color: #15c39a;
+}
+
+.aichat-fullscreen-send {
+  display: inline-flex;
+  width: 44px;
+  height: 44px;
+  flex: none;
+  cursor: pointer;
+  align-items: center;
+  justify-content: center;
+  border-radius: 14px;
+  border: 0;
+  background: linear-gradient(135deg, #14b892, #0e8a6d);
+  color: #fff;
+  font-weight: 600;
+  font-size: 14px;
+  transition: all 0.15s ease;
+  box-shadow: 0 4px 16px rgba(21, 195, 154, 0.3);
+}
+
+.aichat-fullscreen-send:hover:not(:disabled) {
+  transform: scale(1.03);
+  box-shadow: 0 6px 20px rgba(21, 195, 154, 0.4);
+}
+
+.aichat-fullscreen-send:disabled {
+  opacity: 0.4;
+  cursor: default;
+}
+
+.aichat-fullscreen-chips {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  padding: 8px 16px 0;
+}
+
+.aichat-fullscreen-chip {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  border-radius: 999px;
+  background: #fff;
+  padding: 8px 14px;
+  font-size: 12px;
+  font-weight: 600;
+  color: #334155;
+  border: 1px solid rgba(15, 23, 42, 0.06);
+  transition: all 0.15s ease;
+}
+
+.aichat-fullscreen-chip:hover {
+  background: #cde06a;
+  color: #141414;
+}
+
+/* =====================================================================
+   AI CHAT (.aichat-*) — fully static styling (scanner-proof).
+   ===================================================================== */
+
+.dark .time-pill,
+.admincn .time-pill {
+  background-color: rgba(255, 255, 255, 0.1);
+}
+
+.sundrel .divide-white\/\[0\.06\] > :not([hidden]) ~ :not([hidden]) {
+  border-color: rgba(20, 20, 20, 0.08);
+}
+
+.sundrel .animate-shimmer-bar {
+  background: linear-gradient(90deg, #141414 0%, #6b6b60 50%, #141414 100%);
+  background-size: 200% 100%;
+}
+
+/* =====================================================================
+   PERFORMANCE MODE (.perf scope) — kills GPU churn, keeps the design.
+   Toggle in the workspace header (auto-on inside Electron).
+   ===================================================================== */
+.perf .animate-aurora-drift,
+.perf .animate-orb-float,
+.perf .animate-shimmer-bar,
+.perf .animate-bell-ring,
+.perf .geo-float,
+.perf .geo-float-delayed,
+.perf .animate-meteor,
+.perf .animate-spin-around,
+.perf .animate-shiny-text,
+.perf .animate-border-beam,
+.perf .animate-shine {
+  animation: none !important;
+}
+
+/* =====================================================================
+   CAR-RENT SOFTNESS (still under .sundrel scope) — warm paper, pillowy
+   radii, soft shadows, warm ink. Behance Car Rent dashboard language.
+   ===================================================================== */
+.sundrel [class*='rounded-2xl'] {
+  border-radius: 26px;
+}
+.sundrel [class*='rounded-xl'] {
+  border-radius: 18px;
+}
+.sundrel [class*='rounded-lg'] {
+  border-radius: 14px;
+}
+
+.sundrel .bg-white {
+  box-shadow: 0 16px 32px -16px rgba(35, 35, 28, 0.14);
+}
+
+.sundrel .text-slate-900,
+.sundrel .text-slate-800 {
+  color: #1c1c19;
+}
+.sundrel .text-slate-700,
+.sundrel .text-slate-600 {
+  color: #4c4c45;
+}
+.sundrel .text-slate-500 {
+  color: #5b5b52;
+}
+.sundrel .text-slate-400 {
+  color: #6e6e62;
+}
+.sundrel .text-zinc-500 {
+  color: #5b5b52;
+}
+.sundrel .hover\:text-slate-900:hover {
+  color: #1c1c19;
+}
+.sundrel .hover\:text-slate-600:hover {
+  color: #4c4c45;
+}
+.sundrel .placeholder\:text-slate-400::placeholder {
+  color: #8a8778;
+}
+
+.sundrel .bg-slate-50,
+.sundrel .bg-slate-50\/50,
+.sundrel .bg-slate-50\/60,
+.sundrel .bg-slate-50\/70,
+.sundrel .bg-slate-50\/80,
+.sundrel .bg-slate-50\/90 {
+  background-color: #f5f3ea;
+}
+.sundrel .bg-slate-100,
+.sundrel .bg-slate-100\/80 {
+  background-color: #e9e5d6;
+}
+.sundrel .hover\:bg-slate-50:hover,
+.sundrel .hover\:bg-slate-100:hover,
+.sundrel .hover\:bg-slate-100\/80:hover {
+  background-color: #ece8d8;
+}
+
+.sundrel .border-slate-200\/80,
+.sundrel .border-slate-200\/90,
+.sundrel .border-slate-200\/70,
+.sundrel .border-slate-200\/60,
+.sundrel .border-slate-200,
+.sundrel .border-slate-100,
+.sundrel .border-slate-300,
+.sundrel .border-white\/80,
+.sundrel .divide-slate-100 > :not([hidden]) ~ :not([hidden]) {
+  border-color: #d9d4c0;
+}
+
+/* =====================================================================
+   AURORA GLOW INPUT (.ag-*) — static grammar, colors arrive as CSS vars.
+   Night #050608 · panels #0a0d12 · ink #ecf4f8 · hairlines 8%/16%.
+   ===================================================================== */
+.ag-root {
+  --ag-core2: #0ea472;
+  --ag-core: #7cf5c4;
+  --ag-blend: #a78bfa;
+  --ag-high: #e8fff5;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  min-width: 0;
+}
+
+.ag-label {
+  font-family: var(--font-geist-mono, 'Geist Mono', ui-monospace, SFMono-Regular, Menlo, monospace);
+  font-size: 11px;
+  font-weight: 600;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: rgba(236, 244, 248, 0.64);
+}
+
+.ag-field {
+  position: relative;
+  display: flex;
+  align-items: center;
+  height: 54px;
+  border-radius: 999px;
+  background: #0a0d12;
+  border: 1px solid rgba(236, 244, 248, 0.08);
+}
+
+.ag-field.ag-failed {
+  animation: ag-shake 300ms ease-out;
+}
+
+@keyframes ag-shake {
+  0%,
+  100% {
+    transform: translateX(0);
+  }
+  25% {
+    transform: translateX(-5px);
+  }
+  60% {
+    transform: translateX(4px);
+  }
+}
+
+.ag-bloom {
+  position: absolute;
+  inset: -4px;
+  border-radius: 999px;
+  filter: blur(16px);
+  background: linear-gradient(
+    90deg,
+    var(--ag-core2),
+    var(--ag-core),
+    var(--ag-blend),
+    var(--ag-high),
+    var(--ag-core),
+    var(--ag-core2)
+  );
+  background-size: 200% 100%;
+  opacity: 0;
+  transition: opacity 320ms ease;
+  animation: ag-drift 60s linear infinite;
+  pointer-events: none;
+}
+
+.ag-field:focus-within .ag-bloom {
+  opacity: 0.55;
+}
+
+@keyframes ag-drift {
+  to {
+    background-position: 100% 0;
+  }
+}
+
+.ag-rim {
+  position: absolute;
+  inset: 0;
+  border-radius: 999px;
+  padding: 1px;
+  background: linear-gradient(135deg, var(--ag-core2), var(--ag-core), var(--ag-blend));
+  -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+  -webkit-mask-composite: xor;
+  mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+  mask-composite: exclude;
+  opacity: 0;
+  transition: opacity 300ms ease;
+  pointer-events: none;
+}
+
+.ag-field:focus-within .ag-rim,
+.ag-field.ag-done .ag-rim {
+  opacity: 1;
+  box-shadow: 0 10px 28px -10px #5b6cc4;
+}
+
+.ag-ripples {
+  position: absolute;
+  inset: 0;
+  overflow: hidden;
+  border-radius: 999px;
+  pointer-events: none;
+  z-index: 1;
+}
+
+.ag-ripple {
+  position: absolute;
+  top: 50%;
+  width: 46px;
+  height: 46px;
+  border-radius: 999px;
+  background: radial-gradient(circle, var(--ag-high) 0%, transparent 70%);
+  pointer-events: none;
+}
+
+.ag-input {
+  position: relative;
+  z-index: 2;
+  flex: 1;
+  min-width: 0;
+  height: 100%;
+  background: transparent;
+  border: 0;
+  outline: none;
+  padding-left: 22px;
+  color: rgba(236, 244, 248, 0.94);
+  font-family: var(--font-geist, Inter, ui-sans-serif, system-ui, sans-serif);
+  font-size: 15px;
+  caret-color: var(--ag-core);
+}
+
+.ag-input:focus,
+.ag-input:focus-visible {
+  outline: none;
+}
+
+.ag-input::placeholder {
+  color: rgba(236, 244, 248, 0.42);
+}
+
+.ag-mirror {
+  position: absolute;
+  left: 22px;
+  top: 0;
+  height: 100%;
+  visibility: hidden;
+  white-space: pre;
+  font-family: var(--font-geist, Inter, ui-sans-serif, system-ui, sans-serif);
+  font-size: 15px;
+  pointer-events: none;
+}
+
+.ag-btn {
+  position: relative;
+  z-index: 2;
+  flex: none;
+  height: 42px;
+  margin-right: 6px;
+  padding: 0 22px;
+  border: 0;
+  border-radius: 999px;
+  background: linear-gradient(135deg, var(--ag-core), var(--ag-core2));
+  color: #050608;
+  font-family: var(--font-geist, Inter, ui-sans-serif, system-ui, sans-serif);
+  font-size: 14px;
+  font-weight: 650;
+  cursor: pointer;
+  transition:
+    transform 200ms ease,
+    filter 200ms ease,
+    opacity 200ms ease;
+}
+
+.ag-btn:hover:not(:disabled) {
+  filter: brightness(1.08);
+}
+
+.ag-btn:active:not(:disabled) {
+  transform: scale(0.97);
+}
+
+.ag-btn:disabled {
+  opacity: 0.65;
+  cursor: wait;
+}
+
+.ag-sending {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.ag-dot {
+  width: 8px;
+  height: 8px;
+  border-radius: 999px;
+  background: #050608;
+  animation: ag-pulse 900ms ease-in-out infinite;
+}
+
+@keyframes ag-pulse {
+  0%,
+  100% {
+    opacity: 0.35;
+    transform: scale(0.85);
+  }
+  50% {
+    opacity: 1;
+    transform: scale(1.1);
+  }
+}
+
+.ag-line {
+  margin: 0;
+  min-height: 18px;
+  font-family: var(--font-geist, Inter, ui-sans-serif, system-ui, sans-serif);
+  font-size: 12.5px;
+  color: rgba(236, 244, 248, 0.64);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .ag-bloom {
+    animation: none;
+  }
+  .ag-field.ag-failed {
+    animation: none;
+  }
+  .ag-dot {
+    animation: none;
+    opacity: 1;
+  }
+}
+
+/* ---------- Glow border card (conic rotating arc) ---------- */
+@property --gangle {
+  syntax: '<angle>';
+  initial-value: 0deg;
+  inherits: false;
+}
+
+.glow-card {
+  position: relative;
+  border-radius: 18px;
+}
+
+.glow-card::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+  padding: 1.5px;
+  background: conic-gradient(
+    from var(--gangle),
+    transparent 0%,
+    transparent 37.5%,
+    #6366f1 50%,
+    transparent 62.5%,
+    transparent 100%
+  );
+  -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+  -webkit-mask-composite: xor;
+  mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+  mask-composite: exclude;
+  animation: glow-spin 4s linear infinite;
+  pointer-events: none;
+}
+
+.glow-card:hover::before {
+  animation-duration: 2s;
+}
+
+.glow-card-behind {
+  position: absolute;
+  inset: -10px;
+  border-radius: 26px;
+  background: conic-gradient(
+    from var(--gangle),
+    transparent 0%,
+    transparent 37.5%,
+    rgba(99, 102, 241, 0.9) 50%,
+    transparent 62.5%,
+    transparent 100%
+  );
+  filter: blur(26px);
+  opacity: 0.4;
+  animation: glow-spin 4s linear infinite;
+  pointer-events: none;
+}
+
+.glow-card:hover .glow-card-behind {
+  animation-duration: 2s;
+}
+
+@keyframes glow-spin {
+  to {
+    --gangle: 360deg;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .glow-card::before,
+  .glow-card-behind {
+    animation: none;
+  }
+}
+
+/* ---------- Mobile safe-area ---------- */
+@supports (padding: env(safe-area-inset-bottom)) {
+  .pb-safe {
+    padding-bottom: calc(0.75rem + env(safe-area-inset-bottom));
+  }
+}
+
+
+.probe-xyz-123 { color: red; }

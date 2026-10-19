@@ -1,0 +1,43 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 240" role="img" aria-label="Daily rhythm timeline artwork">
+  <defs>
+    <linearGradient id="rhyLine" x1="0" y1="0" x2="1" y2="0">
+      <stop offset="0%" stop-color="#15C39A" stop-opacity="0.15"/>
+      <stop offset="20%" stop-color="#15C39A"/>
+      <stop offset="80%" stop-color="#6366F1"/>
+      <stop offset="100%" stop-color="#6366F1" stop-opacity="0.15"/>
+    </linearGradient>
+    <radialGradient id="rhyGlow" cx="50%" cy="50%" r="50%">
+      <stop offset="0%" stop-color="#15C39A" stop-opacity="0.25"/>
+      <stop offset="100%" stop-color="#15C39A" stop-opacity="0"/>
+    </radialGradient>
+  </defs>
+  <rect width="800" height="240" fill="url(#rhyGlow)" opacity="0.5"/>
+  <path d="M60 150 Q 200 40 330 130 T 610 110 T 760 140" fill="none" stroke="#0E8A6D" stroke-width="1.5" opacity="0.35" stroke-dasharray="3 7"/>
+  <line x1="60" y1="150" x2="740" y2="150" stroke="url(#rhyLine)" stroke-width="2.5" stroke-linecap="round"/>
+  <g>
+    <circle cx="140" cy="150" r="14" fill="#ffffff" stroke="#15C39A" stroke-width="2.5"/>
+    <circle cx="140" cy="150" r="5" fill="#15C39A"/>
+    <circle cx="270" cy="150" r="14" fill="#ffffff" stroke="#15C39A" stroke-width="2.5"/>
+    <circle cx="270" cy="150" r="5" fill="#15C39A"/>
+    <circle cx="400" cy="150" r="18" fill="#0B1917"/>
+    <circle cx="400" cy="150" r="18" fill="none" stroke="#15C39A" stroke-width="2.5"/>
+    <circle cx="400" cy="150" r="6" fill="#15C39A"/>
+    <circle cx="530" cy="150" r="14" fill="#ffffff" stroke="#6366F1" stroke-width="2.5"/>
+    <circle cx="530" cy="150" r="5" fill="#6366F1"/>
+    <circle cx="660" cy="150" r="14" fill="#ffffff" stroke="#6366F1" stroke-width="2.5"/>
+    <circle cx="660" cy="150" r="5" fill="#6366F1"/>
+  </g>
+  <g stroke="#0E8A6D" stroke-width="1.5" opacity="0.45">
+    <line x1="140" y1="176" x2="140" y2="196"/>
+    <line x1="270" y1="176" x2="270" y2="196"/>
+    <line x1="400" y1="180" x2="400" y2="200"/>
+    <line x1="530" y1="176" x2="530" y2="196"/>
+    <line x1="660" y1="176" x2="660" y2="196"/>
+  </g>
+  <g fill="#0E8A6D" opacity="0.5">
+    <circle cx="100" cy="60" r="2"/>
+    <circle cx="700" cy="55" r="2.5"/>
+    <circle cx="620" cy="200" r="2"/>
+    <circle cx="180" cy="205" r="2"/>
+  </g>
+</svg>
